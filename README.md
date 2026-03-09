@@ -43,7 +43,7 @@ For `.mp4` payloads, the pipeline merges temporal visual tracking with synchroni
 
 | Video Frame: Beach | Segmented Environment |
 |:---:|:---:|
-| <img src="./assets/video.png" width="450"> | <img src="./assets/video_segmented.png" width="450"> |
+| <img src="./assets/video.png" width="450"> | <img src="./assets/video_segmented.jpg" width="450"> |
 
 **Comprehensive Video Pipeline Metadata:**
 ![Video JSON Output](./assets/videoJSON.png)
