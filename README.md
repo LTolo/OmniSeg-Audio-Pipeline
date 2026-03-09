@@ -58,7 +58,7 @@ For `.mp4` payloads, the pipeline merges temporal visual tracking with synchroni
 ### 2. Environment Setup
 ```bash
 # Clone the repository
-git clone [https://github.com/LTolo/OmniSeg-Audio-Pipeline.git]
+git clone https://github.com/LTolo/OmniSeg-Audio-Pipeline.git
 cd OmniSeg-Audio-Pipeline
 
 # Create a clean virtual environment
