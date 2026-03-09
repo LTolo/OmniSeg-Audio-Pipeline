@@ -1,51 +1,40 @@
-# Multi-Modal Vision & Audio Analysis (SAM 2 & AST)
+# OmniSeg-Audio-Pipeline: Multimodal Intelligence 🤖🎙️👁️
 
-## Description
-This project provides a unified, production-ready multimedia pipeline combining **Meta's Segment Anything Model 2 (SAM 2)** for highly optimized image and video segmentation, alongside **MIT's Audio Spectrogram Transformer (AST)** for robust audio classification.
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![Model: SAM2](https://img.shields.io/badge/Model-Meta_SAM2-green)](https://github.com/facebookresearch/segment-anything-2)
+[![Model: AST](https://img.shields.io/badge/Model-MIT_AST-red)](https://huggingface.co/docs/transformers/model_doc/audio-spectrogram-transformer)
 
-Built explicitly for minimal-footprint hardware environments, this tool operates fully autonomously across dynamic media tracking natively via zero-overhead sequences. It maps direct visual structural overlays while consolidating comprehensive runtime properties internally.
+A high-performance, modular processing engine that synchronizes **Computer Vision** and **Acoustic Intelligence**. This pipeline leverages Meta's State-of-the-Art **Segment Anything Model 2 (SAM 2)** for visual isolation and MIT's **Audio Spectrogram Transformer (AST)** for environmental sound classification.
 
-## Features
-- **$O(1)$ Streamlined Pipeline**: Intelligent dispatcher (`run_smart_dispatcher.py`) sequentially processes massive video, audio, and image arrays applying automated VRAM teardown protocols between transitions, guaranteeing extreme stability.
-- **Hybrid Vision Logic**:
-  - Dynamically isolates central mass targeting tracks for static image `.jpg` prediction mapping.
-  - Slices complex `.mp4` video sequences processing broad native 2x2 grids across 10-second intervals asynchronously without scaling failure boundaries.
-- **Strict Output Topology**: Operations restrict rigorously exactly to a modular `1 Source, 1 Segmented-JPG, 1 JSON Report` paradigm avoiding sprawling dataset footprints mapping safe sequential directory management.
+---
 
-## Visuals
-<!-- IMPORTANT: Upload and commit your segmented output demo into a new `./assets` root folder -->
-![Segmentation Result](./assets/demo_result.jpg)
+## 🚀 Key Architectural Advantages
 
-## Installation
+* **Hybrid Multimodality**: Simultaneously processes `.mp4` video, `.jpg` images, and `.wav` audio through a unified dispatching logic.
+* **$O(1)$ Resource Management**: Optimized for local hardware (e.g., NVIDIA MX150). The pipeline implements a strict "Process & Purge" cycle, ensuring VRAM is cleared between tasks to prevent memory leakage.
+* **Temporal Video Slicing**: Automatically extracts keyframes at defined intervals (e.g., 0s, 10s) to track visual changes without the computational overhead of full-frame processing.
+* **Production-Ready Output**: Generates standardized JSON reports and segmented visual overlays, ready for integration into larger databases.
 
-Ensure you have [FFmpeg](https://ffmpeg.org/) installed securely inside your system environment PATH to manage native audio track separation capabilities smoothly.
 
-Clone the repository and securely build the strictly enforced footprint environment:
 
+---
+
+## 🛠️ System Requirements
+
+### 1. External Dependencies
+- **FFmpeg**: Required for native audio stream extraction from video files.
+  - *Windows*: `winget install "FFmpeg (Shared)"`
+  - *Linux*: `sudo apt install ffmpeg`
+
+### 2. Environment Setup
 ```bash
-git clone <your-repo-url>
-cd omni-vision-audio-prototyper
+# Clone the repository
+git clone [https://github.com/LTolo/OmniSeg-Audio-Pipeline.git](https://github.com/LTolo/OmniSeg-Audio-Pipeline.git)
+cd OmniSeg-Audio-Pipeline
 
-# Set up the VENV boundary
+# Create a clean virtual environment
 python -m venv .venv
-# On Windows:
-.venv\Scripts\activate
-# On Unix:
-# source .venv/bin/activate 
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 
+# Install dependencies
 pip install -r requirements.txt
-```
-
-*(Note: SAM 2 downloads natively from Meta's source registry requiring `pip` compilation).*
-
-## Usage
-
-1. Create a `data/` directory natively inside the application root if not strictly tracked via `.gitkeep`.
-2. Move any combinations of native `.mp4`, `.jpg`, or `.wav` payload files directly inside the base `data/` folder.
-3. Automatically process everything silently parsing all files strictly down the pipeline mappings linearly:
-
-```bash
-python run_smart_dispatcher.py
-```
-
-The Smart Dispatcher uniquely monitors file processing execution tracking, shifting source formats recursively entirely mapping exclusively nested into `data/processed/`, automatically terminating gracefully out of sequence bounds upon encountering zero active backlogs!
