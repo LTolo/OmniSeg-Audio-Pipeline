@@ -19,23 +19,28 @@ A high-performance, modular processing engine that synchronizes **Computer Visio
 
 ## 📊 Technical Showcase
 
+
 ### 1. Static Image Segmentation (SAM 2)
-The engine isolates objects with surgical precision. By mapping central mass coordinates, it generates high-fidelity masks for complex subjects like wildlife or landscapes.
+The engine performs high-precision object isolation by mapping central mass coordinates. It generates high-fidelity segmentation masks for complex biological subjects, maintaining edge integrity even in high-contrast environments.
 
-| Source: Tiger | Output: Segmented Mask |
-| :---: | :---: |
-| ![Original Tiger](./assets/picture.jpg) | ![Segmented Tiger](./assets/picture_segmented.jpg) |
+| Source Image (Tiger) | Segmented Output (Mask) |
+|:---:|:---:|
+| <img src="./assets/picture.jpg" width="450"> | <img src="./assets/picture_segmented.jpg" width="450"> |
 
+*Figure 1: Comparison between the raw input and the generated SAM 2 segmentation overlay.*
 
+---
 
 ### 2. Acoustic Event Detection (AST)
-The system extracts audio streams and classifies environmental contexts in real-time. Using the Audio Spectrogram Transformer, it identifies specific sound signatures (e.g., musical instruments, speech, or nature) with high confidence scores.
+The system extracts native audio streams and classifies environmental contexts using the **Audio Spectrogram Transformer**. It provides a probabilistic breakdown of acoustic events (e.g., instruments, speech, or nature) with millisecond-precision timestamps.
 
-**Standardized JSON Result:**
+**Automated JSON Reporting:**
 ![Audio Report JSON](./assets/audioJSON.png)
 
+---
+
 ### 3. Unified Video & Metadata Intelligence
-For video payloads, the pipeline merges temporal visual slicing with synchronized audio analysis. This creates a multi-layered report containing both object tracking data and acoustic timelines.
+For `.mp4` payloads, the pipeline merges temporal visual slicing with synchronized audio analysis. This creates a multi-layered metadata report containing both object tracking coordinates and chronological acoustic signatures.
 
 **Video Pipeline Metadata:**
 ![Video JSON Output](./assets/videoJSON.png)
