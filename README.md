@@ -1,4 +1,4 @@
-# OmniSeg-Audio-Pipeline: Multimodal Intelligence 🤖🎙️👁️
+# OmniSeg-Audio-Pipeline: Multimodal Intelligence
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![Model: SAM2](https://img.shields.io/badge/Model-Meta_SAM2-green)](https://github.com/facebookresearch/segment-anything-2)
