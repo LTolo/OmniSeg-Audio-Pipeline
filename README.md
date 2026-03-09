@@ -25,7 +25,7 @@ A high-performance, modular processing engine that synchronizes **Computer Visio
 In der Bild- und Videoverarbeitung isoliert das System Objekte mit chirurgischer Präzision. Hier ein Beispiel der Tier- und Landschaftssegmentierung:
 
 | Target: Tiger |
-| :---: |
+| :---: |:---: |
 | ![Tiger Segmentation](./assets/picture.jpg) | ![Beach Segmentation](./assets/picture_segmented.jpg) |
 
 ### Acoustic Intelligence (AST)
