@@ -41,9 +41,11 @@ The system extracts native audio streams and classifies environmental contexts u
 ### 3. Unified Video & Metadata Intelligence ([SAM 2](https://github.com/facebookresearch/segment-anything-2) & [AST](https://github.com/YuanGongND/ast))
 For `.mp4` payloads, the pipeline merges temporal visual tracking with synchronized acoustic analysis. Media orchestration is handled via **OpenCV** and **FFmpeg** to perform high-speed frame extraction and audio demuxing, feeding raw streams into the specialized AI engines. This creates a multi-layered metadata report containing both pixel-perfect object coordinates and chronological acoustic signatures.
 
+| Video Frame: Beach | Segmented Environment |
+|:---:|:---:|
+| <img src="./assets/video.png" width="450"> | <img src="./assets/video_segmented.png" width="450"> |
 
-
-**Video Pipeline Metadata:**
+**Comprehensive Video Pipeline Metadata:**
 ![Video JSON Output](./assets/videoJSON.png)
 
 ---
