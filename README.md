@@ -19,6 +19,23 @@ A high-performance, modular processing engine that synchronizes **Computer Visio
 
 ---
 
+## 📊 Visual Showcase
+
+### Computer Vision (SAM 2)
+In der Bild- und Videoverarbeitung isoliert das System Objekte mit chirurgischer Präzision. Hier ein Beispiel der Tier- und Landschaftssegmentierung:
+
+| Target: Tiger |
+| :---: |
+| ![Tiger Segmentation](./assets/picture.jpg) | ![Beach Segmentation](./assets/picture_segmented.jpg) |
+
+### Acoustic Intelligence (AST)
+Das System extrahiert die Audiospur und klassifiziert die Umgebungskontexte in Echtzeit. Die Ergebnisse werden in einer strukturierten Topologie ausgegeben:
+
+**Sample JSON Output:**
+![Audio Report JSON](./assets/audio_report_json.png)
+
+---
+
 ## 🛠️ System Requirements
 
 ### 1. External Dependencies
