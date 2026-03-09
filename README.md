@@ -10,36 +10,42 @@ A high-performance, modular processing engine that synchronizes **Computer Visio
 
 ## 🚀 Key Architectural Advantages
 
-* **Hybrid Multimodality**: Simultaneously processes `.mp4` video, `.jpg` images, and `.wav` audio through a unified dispatching logic.
-* **$O(1)$ Resource Management**: Optimized for local hardware (e.g., NVIDIA MX150). The pipeline implements a strict "Process & Purge" cycle, ensuring VRAM is cleared between tasks to prevent memory leakage.
-* **Temporal Video Slicing**: Automatically extracts keyframes at defined intervals (e.g., 0s, 10s) to track visual changes without the computational overhead of full-frame processing.
-* **Production-Ready Output**: Generates standardized JSON reports and segmented visual overlays, ready for integration into larger databases.
-
-
+* **Hybrid Multimodality**: Simultaneously processes `.mp4` video, `.jpg` images, and `.wav` audio through unified dispatching logic.
+* **$O(1)$ Resource Management**: Optimized for edge hardware (e.g., NVIDIA MX150). Implements a strict "Process & Purge" cycle, clearing VRAM between tasks to prevent memory leakage.
+* **Temporal Video Slicing**: Efficiently extracts keyframes at defined intervals (e.g., 10s) to track visual changes without the overhead of full-frame processing.
+* **Production-Ready Output**: Generates standardized JSON reports and segmented visual overlays for seamless database integration.
 
 ---
 
-## 📊 Visual Showcase
+## 📊 Technical Showcase
 
-### Computer Vision (SAM 2)
-In der Bild- und Videoverarbeitung isoliert das System Objekte mit chirurgischer Präzision. Hier ein Beispiel der Tier- und Landschaftssegmentierung:
+### 1. Static Image Segmentation (SAM 2)
+The engine isolates objects with surgical precision. By mapping central mass coordinates, it generates high-fidelity masks for complex subjects like wildlife or landscapes.
 
-| Target: Tiger |
-| :---: |:---: |
-| ![Tiger Segmentation](./assets/picture.jpg) | ![Beach Segmentation](./assets/picture_segmented.jpg) |
+| Source: Tiger | Output: Segmented Mask |
+| :---: | :---: |
+| ![Original Tiger](./assets/picture.jpg) | ![Segmented Tiger](./assets/picture_segmented.jpg) |
 
-### Acoustic Intelligence (AST)
-Das System extrahiert die Audiospur und klassifiziert die Umgebungskontexte in Echtzeit. Die Ergebnisse werden in einer strukturierten Topologie ausgegeben:
 
-**Sample JSON Output:**
-![Audio Report JSON](./assets/audio_report_json.png)
+
+### 2. Acoustic Event Detection (AST)
+The system extracts audio streams and classifies environmental contexts in real-time. Using the Audio Spectrogram Transformer, it identifies specific sound signatures (e.g., musical instruments, speech, or nature) with high confidence scores.
+
+**Standardized JSON Result:**
+![Audio Report JSON](./assets/audioJSON.png)
+
+### 3. Unified Video & Metadata Intelligence
+For video payloads, the pipeline merges temporal visual slicing with synchronized audio analysis. This creates a multi-layered report containing both object tracking data and acoustic timelines.
+
+**Video Pipeline Metadata:**
+![Video JSON Output](./assets/videoJSON.png)
 
 ---
 
 ## 🛠️ System Requirements
 
 ### 1. External Dependencies
-- **FFmpeg**: Required for native audio stream extraction from video files.
+- **FFmpeg**: Required for native audio stream extraction and video demuxing.
   - *Windows*: `winget install "FFmpeg (Shared)"`
   - *Linux*: `sudo apt install ffmpeg`
 
@@ -51,7 +57,8 @@ cd OmniSeg-Audio-Pipeline
 
 # Create a clean virtual environment
 python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+# Activate on Windows:
+.venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
