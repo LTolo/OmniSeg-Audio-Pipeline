@@ -8,7 +8,7 @@ A high-performance, modular processing engine that synchronizes **Computer Visio
 
 ---
 
-## 🚀 Key Architectural Advantages
+## Key Architectural Advantages
 
 * **Hybrid Multimodality**: Simultaneously processes `.mp4` video, `.jpg` images, and `.wav` audio through unified dispatching logic.
 * **$O(1)$ Resource Management**: Optimized for edge hardware (e.g., NVIDIA MX150). Implements a strict "Process & Purge" cycle, clearing VRAM between tasks to prevent memory leakage.
@@ -17,10 +17,9 @@ A high-performance, modular processing engine that synchronizes **Computer Visio
 
 ---
 
-## 📊 Technical Showcase
+## Technical Showcase
 
-
-### 1. Static Image Segmentation (SAM 2)
+### 1. Static Image Segmentation ([SAM 2 by Meta](https://github.com/facebookresearch/segment-anything-2))
 The engine performs high-precision object isolation by mapping central mass coordinates. It generates high-fidelity segmentation masks for complex biological subjects, maintaining edge integrity even in high-contrast environments.
 
 | Source Image (Tiger) | Segmented Output (Mask) |
@@ -31,7 +30,7 @@ The engine performs high-precision object isolation by mapping central mass coor
 
 ---
 
-### 2. Acoustic Event Detection (AST)
+### 2. Acoustic Event Detection ([AST by MIT](https://github.com/YuanGongND/ast))
 The system extracts native audio streams and classifies environmental contexts using the **Audio Spectrogram Transformer**. It provides a probabilistic breakdown of acoustic events (e.g., instruments, speech, or nature) with millisecond-precision timestamps.
 
 **Automated JSON Reporting:**
@@ -39,8 +38,10 @@ The system extracts native audio streams and classifies environmental contexts u
 
 ---
 
-### 3. Unified Video & Metadata Intelligence
-For `.mp4` payloads, the pipeline merges temporal visual slicing with synchronized audio analysis. This creates a multi-layered metadata report containing both object tracking coordinates and chronological acoustic signatures.
+### 3. Unified Video & Metadata Intelligence ([SAM 2](https://github.com/facebookresearch/segment-anything-2) & [AST](https://github.com/YuanGongND/ast))
+For `.mp4` payloads, the pipeline merges temporal visual tracking with synchronized acoustic analysis. Media orchestration is handled via **OpenCV** and **FFmpeg** to perform high-speed frame extraction and audio demuxing, feeding raw streams into the specialized AI engines. This creates a multi-layered metadata report containing both pixel-perfect object coordinates and chronological acoustic signatures.
+
+
 
 **Video Pipeline Metadata:**
 ![Video JSON Output](./assets/videoJSON.png)
