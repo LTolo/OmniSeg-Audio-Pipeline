@@ -37,16 +37,23 @@ sound classification, unifying `.mp4`, `.jpg`, and `.wav` inputs under one dispa
 High-precision object isolation with high-fidelity masks that preserve edge integrity even in
 high-contrast scenes.
 
-| Source image | Segmented output |
-|:---:|:---:|
-| ![Source](assets/picture.jpg) | ![Segmented](assets/picture_segmented.jpg) |
+<table>
+  <tr>
+    <th align="center">Source image</th>
+    <th align="center">Segmented output</th>
+  </tr>
+  <tr>
+    <td><img src="assets/picture.jpg" width="400"></td>
+    <td><img src="assets/picture_segmented.jpg" width="400"></td>
+  </tr>
+</table>
 
 ### 2. Acoustic event detection (AST)
 
 The engine extracts the native audio stream and classifies environmental context with the
 Audio Spectrogram Transformer, producing a probabilistic breakdown of acoustic events.
 
-![Audio report JSON](assets/audioJSON.png)
+<img src="assets/audioJSON.png" width="820">
 
 ### 3. Unified video + metadata intelligence (SAM 2 &amp; AST)
 
@@ -54,11 +61,18 @@ For `.mp4` payloads the pipeline merges temporal visual tracking with synchroniz
 analysis. Media orchestration uses **OpenCV** and **FFmpeg** for frame extraction and audio
 demuxing, feeding both engines to build a layered metadata report.
 
-| Video frame | Segmented environment |
-|:---:|:---:|
-| ![Frame](assets/video.png) | ![Segmented](assets/video_segmented.jpg) |
+<table>
+  <tr>
+    <th align="center">Video frame</th>
+    <th align="center">Segmented environment</th>
+  </tr>
+  <tr>
+    <td><img src="assets/video.png" width="400"></td>
+    <td><img src="assets/video_segmented.jpg" width="400"></td>
+  </tr>
+</table>
 
-![Video JSON output](assets/videoJSON.png)
+<img src="assets/videoJSON.png" width="820">
 
 ## How it works
 
