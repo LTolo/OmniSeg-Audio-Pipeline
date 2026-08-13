@@ -1,0 +1,11 @@
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+# The vendored SAM 2 reference snippet is not part of this project's code.
+extend-exclude = ["sam2_source.py"]
+
+[tool.ruff.lint]
+# Style rules are relaxed for this research pipeline; the CI enforces the
+# critical correctness checks (syntax errors, undefined names) via
+# `ruff check --select E9,F63,F7,F82`.
+select = ["E9", "F63", "F7", "F82"]

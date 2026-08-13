@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+# This project depends on GPU-only, multi-gigabyte models (SAM 2, AST) and
+# CUDA, so running the full pipeline in CI is not practical. Instead, CI acts
+# as a fast, dependency-free *code-quality gate*: it verifies that every
+# project Python file is syntactically valid and free of critical lint errors
+# (undefined names, syntax errors, etc.) on multiple Python versions.
+jobs:
+  code-quality:
+    name: Code quality (py${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install ruff
+        run: pip install ruff
+
+      - name: Syntax check (compile all project modules)
+        run: |
+          python -m py_compile \
+            run_omni_pipeline.py \
+            run_smart_dispatcher.py \
+            src/main.py \
+            src/audio_processor.py
+
+      - name: Lint for critical errors (undefined names, syntax)
+        # E9/F63/F7/F82 are the "must-not-ship" checks: syntax errors,
+        # undefined names, broken f-strings, etc. Style-only rules are
+        # intentionally not enforced here.
+        run: ruff check --select E9,F63,F7,F82 run_omni_pipeline.py run_smart_dispatcher.py src/
