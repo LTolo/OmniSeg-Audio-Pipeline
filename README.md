@@ -1,72 +1,155 @@
-# OmniSeg-Audio-Pipeline: Multimodal Intelligence
+<h1 align="center">OmniSeg-Audio-Pipeline</h1>
 
-[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
-[![Model: SAM2](https://img.shields.io/badge/Model-Meta_SAM2-green)](https://github.com/facebookresearch/segment-anything-2)
-[![Model: AST](https://img.shields.io/badge/Model-MIT_AST-red)](https://huggingface.co/docs/transformers/model_doc/audio-spectrogram-transformer)
+<p align="center">
+  <b>A multimodal intelligence engine that synchronizes computer vision and acoustic analysis.</b><br>
+  Meta <b>SAM 2</b> for visual segmentation · MIT <b>AST</b> for environmental sound classification.
+</p>
 
-A high-performance, modular processing engine that synchronizes **Computer Vision** and **Acoustic Intelligence**. This pipeline leverages Meta's State-of-the-Art **Segment Anything Model 2 (SAM 2)** for visual isolation and MIT's **Audio Spectrogram Transformer (AST)** for environmental sound classification.
-
----
-
-## Key Architectural Advantages
-
-* **Hybrid Multimodality**: Simultaneously processes `.mp4` video, `.jpg` images, and `.wav` audio through unified dispatching logic.
-* **$O(1)$ Resource Management**: Optimized for edge hardware (e.g., NVIDIA MX150). Implements a strict "Process & Purge" cycle, clearing VRAM between tasks to prevent memory leakage.
-* **Temporal Video Slicing**: Efficiently extracts keyframes at defined intervals (e.g., 10s) to track visual changes without the overhead of full-frame processing.
-* **Production-Ready Output**: Generates standardized JSON reports and segmented visual overlays for seamless database integration.
+<p align="center">
+  <a href="https://github.com/LTolo/OmniSeg-Audio-Pipeline/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/LTolo/OmniSeg-Audio-Pipeline/actions/workflows/ci.yml/badge.svg"></a>
+  <img alt="Python" src="https://img.shields.io/badge/python-3.11%2B-blue.svg">
+  <a href="https://github.com/facebookresearch/segment-anything-2"><img alt="Model: SAM 2" src="https://img.shields.io/badge/Model-Meta_SAM2-green"></a>
+  <a href="https://huggingface.co/docs/transformers/model_doc/audio-spectrogram-transformer"><img alt="Model: AST" src="https://img.shields.io/badge/Model-MIT_AST-red"></a>
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg"></a>
+</p>
 
 ---
 
-## Technical Showcase
+A high-performance, modular processing engine that synchronizes **computer vision** and
+**acoustic intelligence**. The pipeline leverages Meta's **Segment Anything Model 2 (SAM 2)**
+for visual isolation and MIT's **Audio Spectrogram Transformer (AST)** for environmental
+sound classification, unifying `.mp4`, `.jpg`, and `.wav` inputs under one dispatcher.
 
-### 1. Static Image Segmentation ([SAM 2 by Meta](https://github.com/facebookresearch/segment-anything-2))
-The engine performs high-precision object isolation by mapping central mass coordinates. It generates high-fidelity segmentation masks for complex biological subjects, maintaining edge integrity even in high-contrast environments.
+## Key architectural advantages
 
-| Source Image (Tiger) | Segmented Output (Mask) |
-|:---:|:---:|
-| <img src="./assets/picture.jpg" width="450"> | <img src="./assets/picture_segmented.jpg" width="450"> |
+- **Hybrid multimodality:** Processes video, images, and audio through unified dispatching logic.
+- **Disciplined VRAM management:** A strict *"process &amp; purge"* cycle clears CUDA memory
+  between tasks — tuned to run on modest edge GPUs (e.g. NVIDIA MX150).
+- **Temporal video slicing:** Extracts keyframes at fixed intervals (e.g. every 10 s) to track
+  visual change without the cost of full-frame processing.
+- **Production-ready output:** Emits standardized JSON reports plus segmented visual overlays
+  for downstream database integration.
 
-*Figure 1: Comparison between the raw input and the generated SAM 2 segmentation overlay.*
+## Showcase
 
----
+### 1. Static image segmentation (SAM 2)
 
-### 2. Acoustic Event Detection ([AST by MIT](https://github.com/YuanGongND/ast))
-The system extracts native audio streams and classifies environmental contexts using the **Audio Spectrogram Transformer**. It provides a probabilistic breakdown of acoustic events (e.g., instruments, speech, or nature) with millisecond-precision timestamps.
+High-precision object isolation with high-fidelity masks that preserve edge integrity even in
+high-contrast scenes.
 
-**Automated JSON Reporting:**
-![Audio Report JSON](./assets/audioJSON.png)
+<table>
+  <tr>
+    <th align="center">Source image</th>
+    <th align="center">Segmented output</th>
+  </tr>
+  <tr>
+    <td><img src="assets/picture.jpg" width="400"></td>
+    <td><img src="assets/picture_segmented.jpg" width="400"></td>
+  </tr>
+</table>
 
----
+### 2. Acoustic event detection (AST)
 
-### 3. Unified Video & Metadata Intelligence ([SAM 2](https://github.com/facebookresearch/segment-anything-2) & [AST](https://github.com/YuanGongND/ast))
-For `.mp4` payloads, the pipeline merges temporal visual tracking with synchronized acoustic analysis. Media orchestration is handled via **OpenCV** and **FFmpeg** to perform high-speed frame extraction and audio demuxing, feeding raw streams into the specialized AI engines. This creates a multi-layered metadata report containing both pixel-perfect object coordinates and chronological acoustic signatures.
+The engine extracts the native audio stream and classifies environmental context with the
+Audio Spectrogram Transformer, producing a probabilistic breakdown of acoustic events.
 
-| Video Frame: Beach | Segmented Environment |
-|:---:|:---:|
-| <img src="./assets/video.png" width="450"> | <img src="./assets/video_segmented.jpg" width="450"> |
+<img src="assets/audioJSON.png" width="820">
 
-**Comprehensive Video Pipeline Metadata:**
-![Video JSON Output](./assets/videoJSON.png)
+### 3. Unified video + metadata intelligence (SAM 2 &amp; AST)
 
----
+For `.mp4` payloads the pipeline merges temporal visual tracking with synchronized acoustic
+analysis. Media orchestration uses **OpenCV** and **FFmpeg** for frame extraction and audio
+demuxing, feeding both engines to build a layered metadata report.
 
-## 🛠️ System Requirements
+<table>
+  <tr>
+    <th align="center">Video frame</th>
+    <th align="center">Segmented environment</th>
+  </tr>
+  <tr>
+    <td><img src="assets/video.png" width="400"></td>
+    <td><img src="assets/video_segmented.jpg" width="400"></td>
+  </tr>
+</table>
 
-### 1. External Dependencies
-- **FFmpeg**: Required for native audio stream extraction and video demuxing.
-  - *Windows*: `winget install "FFmpeg (Shared)"`
-  - *Linux*: `sudo apt install ffmpeg`
+<img src="assets/videoJSON.png" width="820">
 
-### 2. Environment Setup
+## How it works
+
+```mermaid
+graph TD;
+    IN[".mp4 / .jpg / .wav"] --> DISP[Smart Dispatcher]
+    DISP --> AUD[AudioEngine · AST]
+    DISP --> VIS[VisionEngine · SAM 2]
+    AUD --> REP[JSON Report]
+    VIS --> REP
+    VIS --> OVL[Segmented overlays]
+    style DISP fill:#f9f,stroke:#333,stroke-width:2px;
+    style REP fill:#bbf,stroke:#333,stroke-width:2px;
+```
+
+1. **Dispatch** — `run_smart_dispatcher.py` watches `data/` and routes each file by type.
+2. **Audio** — FFmpeg demuxes the track; AST classifies the top acoustic events.
+3. **Vision** — SAM 2 segments images / sampled video keyframes and writes overlays.
+4. **Aggregate** — a unified `*_report.json` captures both modalities; VRAM is purged.
+
+## Requirements
+
+**External:** [FFmpeg](https://ffmpeg.org/) for audio extraction / demuxing.
+
 ```bash
-# Clone the repository
+# Windows
+winget install "FFmpeg (Shared)"
+# Linux
+sudo apt install ffmpeg
+```
+
+## Getting started
+
+```bash
 git clone https://github.com/LTolo/OmniSeg-Audio-Pipeline.git
 cd OmniSeg-Audio-Pipeline
 
-# Create a clean virtual environment
+# Create and activate a virtual environment
 python -m venv .venv
-# Activate on Windows:
-.venv\Scripts\activate
+# Windows:  .venv\Scripts\activate
+# Linux/macOS:  source .venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
+
+# Drop .mp4 / .jpg / .wav files into data/, then run:
+python run_smart_dispatcher.py
+```
+
+Outputs (segmented media + JSON reports) are written to `data/processed/`.
+
+## Project structure
+
+```
+OmniSeg-Audio-Pipeline/
+├── run_smart_dispatcher.py   # Watches data/ and dispatches by file type
+├── run_omni_pipeline.py      # Orchestrates audio → vision → report per file
+├── src/
+│   ├── main.py               # VisionEngine (SAM 2): image & frame segmentation
+│   └── audio_processor.py    # AudioEngine (AST): acoustic event classification
+├── sam2_hiera_t.yaml         # SAM 2 (Hiera-Tiny) model config
+├── requirements.txt          # torch, torchaudio, opencv, transformers, sam2, ...
+├── assets/                   # Showcase images used in this README
+└── .github/workflows/        # CI: syntax + critical-lint gate
+```
+
+## Tech stack
+
+**Python 3.11+** · **PyTorch** · **SAM 2** (Meta) · **AST** (MIT, via 🤗 Transformers) ·
+**OpenCV** · **FFmpeg** · **torchaudio**
+
+> **Note on CI:** the full pipeline needs GPU-class hardware and multi-gigabyte model
+> weights, so CI does not run inference. Instead it acts as a fast **code-quality gate**,
+> validating that every module compiles and is free of critical lint errors across Python
+> 3.11 and 3.12.
+
+## License
+
+Released under the [MIT License](LICENSE). SAM 2 and AST are the property of their
+respective authors and are used under their own licenses.
