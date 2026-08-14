@@ -74,24 +74,6 @@ demuxing, feeding both engines to build a layered metadata report.
 
 <img src="assets/videoJSON.png" width="820">
 
-## How it works
-
-```mermaid
-graph TD;
-    IN[".mp4 / .jpg / .wav"] --> DISP[Smart Dispatcher]
-    DISP --> AUD[AudioEngine · AST]
-    DISP --> VIS[VisionEngine · SAM 2]
-    AUD --> REP[JSON Report]
-    VIS --> REP
-    VIS --> OVL[Segmented overlays]
-    style DISP fill:#f9f,stroke:#333,stroke-width:2px;
-    style REP fill:#bbf,stroke:#333,stroke-width:2px;
-```
-
-1. **Dispatch** — `run_smart_dispatcher.py` watches `data/` and routes each file by type.
-2. **Audio** — FFmpeg demuxes the track; AST classifies the top acoustic events.
-3. **Vision** — SAM 2 segments images / sampled video keyframes and writes overlays.
-4. **Aggregate** — a unified `*_report.json` captures both modalities; VRAM is purged.
 
 ## Requirements
 
